@@ -11,11 +11,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Presenter implements PresenterContract {
-
+    ApiInterface apiInterface;
     private static final String TAG = Presenter.class.getName();
 
 
@@ -29,7 +28,12 @@ public class Presenter implements PresenterContract {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         //Create instance of API interface
-        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        apiInterface = retrofit.create(ApiInterface.class);
+        getMatchdata();
+    }
+
+    @Override
+    public void getMatchdata() {
 
         //Execute call request using the call object
         Call<List<MatchResult>> call = apiInterface.getMatchResultsData();
