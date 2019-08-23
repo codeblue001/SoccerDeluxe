@@ -1,4 +1,4 @@
-package jide.delano.scores;
+package jide.delano.scores.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 
+import jide.delano.scores.R;
+
 public class SplashScreen extends AppCompatActivity {
 
-    private  static int time=5000;
+    private  static int time=6800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +21,9 @@ public class SplashScreen extends AppCompatActivity {
 
         //audio
         MediaPlayer mMediaPlayer = new MediaPlayer();
-        mMediaPlayer = MediaPlayer.create(this, R.raw.cheer);
+        mMediaPlayer = MediaPlayer.create(this, R.raw.sound_intro);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mMediaPlayer.setLooping(true);
+        mMediaPlayer.setLooping(false);
         mMediaPlayer.start();
 
         //splash screen handler

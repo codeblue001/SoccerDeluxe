@@ -1,0 +1,10 @@
+1. Add gradle dependencies(retrofit, gson converter), exceptions, internet permissions, and cleartext
+2. Create the model, view, presenter packages
+3. Create the model Pojo classes using http://www.jsonschema2pojo.org/
+4. Create the API interface in the model
+5. create the presenter and the presenter contract interface
+6. add initRetrofit method to presentercontract interface to load json into app
+
+7. implement in presentercontract interface and implent methods
+8. define retrofit in presenter - fetch base url
+9. Iimplement callback methods (onresponse/onfailure)

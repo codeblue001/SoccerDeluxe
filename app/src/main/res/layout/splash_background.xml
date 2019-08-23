@@ -10,19 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/aclonica"
+        android:shadowColor="#cce6ff"
+        android:shadowDx="8"
+        android:shadowDy="8"
+        android:shadowRadius="8"
         android:text="Scores!"
+        android:textAlignment="center"
+        android:textColor="#fff"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textAlignment="center"
-        android:textColor="#fff"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503"
-        android:shadowColor="#cce6ff"
-        android:shadowDx="8"
-        android:shadowDy="8"
-        android:shadowRadius="8"/>
+        app:layout_constraintVertical_bias="0.503" />
 
     <ImageView
         android:id="@+id/imageView"
