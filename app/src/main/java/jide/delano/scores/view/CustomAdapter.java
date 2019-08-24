@@ -1,24 +1,52 @@
 package jide.delano.scores.view;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+import jide.delano.scores.R;
+import jide.delano.scores.model.MatchResult;
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
+
+    private List<MatchResult> dataSet;
+    private Context context;
+    private static final String TAG = "CustomAdapter";
+
+    public CustomAdapter (Context context){
+        this.context = context;
+    }
+
+    public void setDataSet(List<MatchResult> dataSet){
+        this.dataSet = dataSet;
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        return new CustomViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-
+        holder.matchTitle.setText(dataSet.get(position).getTitle());
+        holder.competitionName.setText(dataSet.get(position).getCompetition().getName());
+        holder.matchDate.setText(dataSet.get(position).getDate());
+        Picasso.get().load(dataSet.get(position).getThumbnail()).into(holder.matchImage);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dataSet != null ? dataSet.size() : 0;
     }
 }

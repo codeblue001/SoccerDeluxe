@@ -17,7 +17,6 @@ public class CustomViewHolder extends RecyclerView.ViewHolder implements View.On
     CardView cardView;
     ImageView matchImage;
     TextView matchTitle, competitionName, matchDate;
-    Context context;
 
     public CustomViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -29,7 +28,6 @@ public class CustomViewHolder extends RecyclerView.ViewHolder implements View.On
         matchDate = itemView.findViewById(R.id.tv_match_date);
 
         //Set onclick listener for card view(make sure the main class is implementing View.onclicklistener)
-        context = itemView.getContext();
         cardView.setOnClickListener(this);
 
     }

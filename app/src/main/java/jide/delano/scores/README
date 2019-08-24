@@ -8,5 +8,5 @@
 7. implement in presentercontract interface and implent methods
 8. define retrofit in presenter - fetch base url
 9. Implement callback methods (onresponse/onfailure)
-10. Create a customViewHolder - define variables and bind them to ids/implement onclicklistener/implement methods/
-11. Create a customAdaptor
+10. Create a customViewHolder - define variables and bind them to ids/implement onclicklistener/
+11. Create a customAdaptor - implement custom view holder methods/inflate item-layout/add picassso
