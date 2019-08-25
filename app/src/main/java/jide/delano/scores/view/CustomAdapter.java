@@ -1,16 +1,16 @@
 package jide.delano.scores.view;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
 import jide.delano.scores.R;
 import jide.delano.scores.model.MatchResult;
 
@@ -20,11 +20,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     private Context context;
     private static final String TAG = "CustomAdapter";
 
-    public CustomAdapter (Context context){
+    public CustomAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDataSet(List<MatchResult> dataSet){
+    public void setDataSet(List<MatchResult> dataSet) {
         this.dataSet = dataSet;
         notifyDataSetChanged();
     }
@@ -33,8 +33,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
-        return new CustomViewHolder(view);
+        return new CustomViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_layout, parent, false));
     }
 
     @Override

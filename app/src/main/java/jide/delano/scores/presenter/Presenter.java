@@ -1,12 +1,10 @@
 package jide.delano.scores.presenter;
 
 import android.util.Log;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import jide.delano.scores.model.ApiInterface;
 import jide.delano.scores.model.MatchResult;
+import jide.delano.scores.view.ViewContract;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,11 +12,21 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Presenter implements PresenterContract {
-    ApiInterface apiInterface;
+
+    private ViewContract view;
+    private ApiInterface apiInterface;
     private static final String TAG = Presenter.class.getName();
+    private List<MatchResult> dataSet;
 
+    @Override
+    public void onBindView(ViewContract view) {
+        this.view = view;
+    }
 
-    private List<MatchResult> matchVideolist;
+    @Override
+    public void unBind() {
+        view = null;
+    }
 
     @Override
     public void initRetrofit() {
@@ -29,11 +37,6 @@ public class Presenter implements PresenterContract {
                 .build();
         //Create instance of API interface
         apiInterface = retrofit.create(ApiInterface.class);
-        getMatchdata();
-    }
-
-    @Override
-    public void getMatchdata() {
 
         //Execute call request using the call object
         Call<List<MatchResult>> call = apiInterface.getMatchResultsData();
@@ -41,17 +44,26 @@ public class Presenter implements PresenterContract {
         call.enqueue(new Callback<List<MatchResult>>() {
             @Override
             public void onResponse(Call<List<MatchResult>> call, Response<List<MatchResult>> response) {
-                if (!response.isSuccessful()){
-                    response.code();
-                    return;
-                }
-                List<MatchResult> dataSet = response.body();
+                onMatchResultDataSuccess(response.body());
+                Log.d(TAG, "onResponse: " + response.body());
             }
 
             @Override
             public void onFailure(Call<List<MatchResult>> call, Throwable t) {
-                t.printStackTrace();
+                onMatchResultDataFailure(t.getMessage());
             }
         });
+    }
+
+
+
+    @Override
+    public void onMatchResultDataSuccess(List<MatchResult> match) {
+        view.getMatchData(match);
+    }
+
+    @Override
+    public void onMatchResultDataFailure(String errorMessage) {
+        view.getFailureMessage(errorMessage);
     }
 }
